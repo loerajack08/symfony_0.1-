@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Producto{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center">Editar Producto</h1>
+
+    {{ form_start(form) }}
+        <div class="mb-3">
+            {{ form_label(form.clave) }}
+            {{ form_widget(form.clave, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.nombre) }}
+            {{ form_widget(form.nombre, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.precio) }}
+            {{ form_widget(form.precio, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        
+        <button type="submit" class="btn btn-success">Guardar Cambios</button>
+        <a href="{{ path('tablass') }}" class="btn btn-secondary">Cancelar</a>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

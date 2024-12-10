@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Registro de Producto{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    {% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center">Registro de Producto</h1>
+
+        <!-- muestra error si lo ay  -->
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+
+        <!-- Formulario de registro -->
+        <form action="{{ path('registro') }}" method="POST" class="needs-validation" novalidate>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+
+                    <!-- Clave del Producto -->
+                    <div class="mb-3">
+                        <label for="clave_producto" class="form-label">Clave del Producto</label>
+                        <input type="text" class="form-control" name="clave" id="clave_producto" required>
+                        <div class="invalid-feedback">
+                            Por favor, ingresa la clave del producto.
+                        </div>
+                    </div>
+
+                    <!-- Nombre -->
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="nombre" id="nombre" required>
+                        <div class="invalid-feedback">
+                            Por favor, ingresa el nombre del producto.
+                        </div>
+                    </div>
+
+                    <!-- Precio -->
+                    <div class="mb-3">
+                        <label for="precio_producto" class="form-label">Precio</label>
+                        <input type="text" class="form-control" name="precio" id="precio_producto" required>
+                        <div class="invalid-feedback">
+                            Por favor, ingresa el precio del producto.
+                        </div>
+                    </div>
+
+                    <!-- ir ala lista  -->
+                  <div class="d-grid gap-2 mt-3">
+                    <a href="{{ path('tablass') }}" class="btn btn-info">Ver lista de productos</a>
+                  </div>
+
+
+                    <!-- Botones -->
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                        <button type="reset" class="btn btn-secondary">Restablecer</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endblock %}
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script  Bootstrap -->
+    <script>
+        (function () {
+            'use strict'
+
+            var forms = document.querySelectorAll('.needs-validation')
+
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+</body>
+
+</html>
